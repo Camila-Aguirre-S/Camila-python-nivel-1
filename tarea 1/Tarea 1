@@ -1,1 +1,19 @@
 print ("hello World")
+
+# Parte II de la tarea 1
+
+# Problema 1 : Resolución del problema
+# 1) Identificar un políndromo como algo que se lee igual de izquierda a derecha y de derecha a izquierda
+# 2) Input: Frases o caractéres- Output: resultado si es o no políndromo - Ver que la frase tenga EL MISMO ORDEN de letras de izquierda a derecha y viceversa, si si es un políndromo escribir la frase "si es" y si no es pplíndromo escribir " no es " 
+# 3) Verificar con el programa las frases que sean o no políndromos
+# Pseucódigo:
+# recibir las frases
+# Escribir/ leer la frase al revés 
+# Si la frase tiene las mismas letras al reves escribir "es políndromo"
+# si no es escribir "no es políndromo"
+
+#Problema 2:
+#1) Se tienen que diferenciar los logs que tengan la palabra "error" de los que no
+#2) Input: Archivos log, output : correo y eliminar archivos
+#  Buscar todos los archivos logs
+#  Abrirlos/ leerlo
