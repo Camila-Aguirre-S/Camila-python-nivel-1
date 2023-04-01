@@ -17,3 +17,11 @@ print ("hello World")
 #2) Input: Archivos log, output : correo y eliminar archivos
 #  Buscar todos los archivos logs
 #  Abrirlos/ leerlo
+#  Si existen logs con la palabra "error" guardarlos y enviarlos por correo; eliminar los demás
+#3) Verificar si los eliminados no contengan la palabra "error"
+#Pseucódigo:
+# Leer logs
+# Si log contiene palabra " error" envair un correo con este
+# Si log no tiene "error", eliminarlo
+
+#Problema 3:
