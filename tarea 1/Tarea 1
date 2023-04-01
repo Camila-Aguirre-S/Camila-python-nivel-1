@@ -25,3 +25,10 @@ print ("hello World")
 # Si log no tiene "error", eliminarlo
 
 #Problema 3:
+#1) Determinar si los dígitos se pueden ordenar que de un múltiplo de 5
+#2)Input: dígitos- Output: Si es o no multiplo de 5
+#Convertir los números en dígitos
+#Generar posibles combinaciones
+# Ver si termina en 0 o 5 , escribir como posible múltiplo
+#Pseucódigo:
+
