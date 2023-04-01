@@ -23,7 +23,7 @@ print ("hello World")
 # Leer logs
 # Si log contiene palabra " error" envair un correo con este
 # Si log no tiene "error", eliminarlo
-
+#3)Crear una lista con todas las posibles permutaciones, crear un mensaje indicando si es o no múltiplo
 #Problema 3:
 #1) Determinar si los dígitos se pueden ordenar que de un múltiplo de 5
 #2)Input: dígitos- Output: Si es o no multiplo de 5
@@ -31,4 +31,7 @@ print ("hello World")
 #Generar posibles combinaciones
 # Ver si termina en 0 o 5 , escribir como posible múltiplo
 #Pseucódigo:
-
+#Ingresar y leer dígitos
+#Combinar dígitos de los diferentes numeros (cambiarlos de posición todos)
+#Hacer que el ultimo digito sea 0 o 5 
+# Indicar los posibles resultados
