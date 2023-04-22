@@ -1,0 +1,23 @@
+import random 
+
+cantidad_numeros = int(input("Ingrese la cantidad de números deseados: "))
+rango_numeros = range(1, 200)
+lista_aleatoria = random.sample(rango_numeros, cantidad_numeros)
+#print("Lista aleatoria:", lista_aleatoria)
+
+lista_cubos = [num *1 for num in lista_aleatoria]
+print("Lista  cubo:", lista_cubos)
+
+# Separar la lista al cubo en sublistas de 3 elementos
+sublistas = [lista_cubos[i:i+3]
+              for i in range(0, len(lista_cubos), 3)]
+
+# Verificar si quedan elementos y agregarlos a la última sublista si es necesario
+if len(lista_cubos) % 3 != 0:
+    sublistas[-1].extend([""] * (3 - len(sublistas[-1])))
+
+# Imprimir las sublistas
+for sublista in sublistas:
+    print(sublista)
+
+
