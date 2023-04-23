@@ -4,7 +4,7 @@ if numero == 0:
 for i in range(1, numero+1):
     row = "" 
     for c in range(1, i+1): 
-        row += str(c) + " " # Agregar el valor actual de j a la cadena de la fila de números, seguido de un espacio
+        row += str(c) + " " 
     print(row) 
 
     
