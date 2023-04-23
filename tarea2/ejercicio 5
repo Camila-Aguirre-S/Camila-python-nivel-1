@@ -1,0 +1,10 @@
+lista = input("Ingrese la lista de números separados por comas: ").split(",")
+lista_sin_repetidos = []
+
+for numero in lista:
+    numero = numero.strip() 
+    if numero not in lista_sin_repetidos: 
+        lista_sin_repetidos.append(numero) 
+
+lista_sin_repetidos = sorted(lista_sin_repetidos) 
+print("Lista sin repetidos:", lista_sin_repetidos)

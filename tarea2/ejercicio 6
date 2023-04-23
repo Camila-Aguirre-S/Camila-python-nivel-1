@@ -1,0 +1,22 @@
+sampleDict = {
+    "class": {
+        "student": {
+            "name": "Mike",
+            "marks": {
+                "physics": 70,
+                "history": 80,
+                "math": 90
+            },
+        }
+    }
+}
+
+student = sampleDict["class"]["student"]
+name = student["name"]
+marks = student["marks"]
+
+# Calcular el promedio de notas
+average = sum(marks.values()) /3
+
+resultDict = {"nombre": name, "nota": average}
+print(resultDict)
