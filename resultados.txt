@@ -1,0 +1,7 @@
+Operación: potwncial, Resultado: None
+Operación: potencial, Resultado: 16
+Operación: & C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe "c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/TAREA #3/app calculadora", Resultado: None
+Operación: factorial, Resultado: 362880
+Operación: & C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe "c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/TAREA #3/app calculadora", Resultado: None
+Operación: , Resultado: None
+Operación: , Resultado: None

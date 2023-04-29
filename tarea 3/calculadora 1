@@ -1,0 +1,69 @@
+import os
+
+archivo_resultados = "resultados.txt" # Nombre del archivo de texto para guardar los resultados
+
+# Verificar si el archivo existe, si no existe lo crea
+if not os.path.exists(archivo_resultados):
+    open(archivo_resultados, 'w').close()
+
+# Loop principal
+while True:
+    operacion = input("Inserte una operación ('resta' o 'multiplicar' o 'dividir' o 'suma' o 'factorial' o 'potencial') o escriba 'salir' para terminar: ")
+    resultado = None
+
+    if operacion == "resta":
+        numero1 = int(input("Ingresa el primer número: "))
+        numero2 = int(input("Ingresa el segundo número: "))
+        resultado = numero1 - numero2
+
+    elif operacion == "suma":
+        operacion = input("Ingrese una operación de suma separada por '+' (por ejemplo, '3+4+5'): ")
+        numeros = operacion.split('+')
+        suma = 0
+        for numero in numeros:
+          suma += int(numero)
+        resultado = suma
+
+    elif operacion == "multiplicar":
+        operacion = input("Ingrese una operación de multiplicación separada por '*' (por ejemplo, '3*4*5'): ")
+        numeros = operacion.split('*')
+        resultado = 1
+        for numero in numeros:
+            resultado *= int(numero)
+
+    elif operacion == "dividir":
+        numero1 = int(input("Ingresa el primer número: "))
+        numero2 = int(input("Ingresa el segundo número: "))
+        resultado = numero1 / numero2
+
+    elif operacion == "factorial":
+        num = int(input("Ingrese un número: ")) 
+        factorial = 1
+
+        if num < 0:
+            print("Error: el número debe ser positivo")
+        elif num == 0 or num == 1:
+            print("Factorial de",num,"es 1")
+            resultado = 1
+        else:
+            for i in range(2,num+1):
+                factorial *= i
+            resultado = factorial
+
+    elif operacion == "potencial":
+        base = int(input("Ingrese la base: "))
+        exponente = int(input("Ingrese el exponente: "))
+        resultado = base ** exponente
+
+    elif operacion == "salir":
+        break
+
+    # Desplegar resultado de la operación
+    if resultado is not None:
+        print("El resultado de la operación", operacion, "es:", resultado)
+    else:
+        print("Operación no válida")
+
+    # Escribir la operación y su resultado en el archivo de texto
+    with open(archivo_resultados, 'a') as archivo:
+        archivo.write("Operación: " + operacion + ", Resultado: " + str(resultado) + "\n")
