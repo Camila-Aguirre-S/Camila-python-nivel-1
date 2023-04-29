@@ -11,7 +11,16 @@ else:
        factorial *= i
    print("El factorial de",num,"es",factorial)
 
-
+#solución vista en clase
+#def calcular_factorial(num):
+#if num < 0:
+# return "el factorial de un negativo no existe"
+# elif num ==0 
+# return 1
+# factorial= 1
+#for i in range (1, num+1):
+#factorial= factorial + 1
+#return factorial
 
 
 
