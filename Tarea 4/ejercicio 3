@@ -1,16 +1,20 @@
 while True:
     lista = input("Ingrese una lista de elementos separados por comas: ").split(",")
-    elem_a_eliminar = input ("Ingrese elemento a eliminar:")
+    elem_a_eliminar = input("Ingrese el elemento a eliminar: ")
     nueva_lista = lista.copy()
-    try:
-        while elem_a_eliminar in nueva_lista:
-            nueva_lista.remove(elem_a_eliminar)
-        print(f"La nueva lista es: {nueva_lista}")
-    except:
-        print("Ha ocurrido un error. Intente de nuevo.")
-
+    
+    while elem_a_eliminar in nueva_lista:
+        nueva_lista.remove(elem_a_eliminar)
+    
+    print(f"La nueva lista es: {nueva_lista}")
+    
     opcion = input("¿Desea ingresar otra lista? (si/no)")
 
+    while opcion not in ["si", "no"]:
+        print("Ha ocurrido un error. Intente de nuevo.")
+        opcion = input("¿Desea ingresar otra lista? (si/no)")
+    
+    # Si el usuario ingresa "no", salir del loop
     if opcion.lower() == "no":
         break
 
@@ -18,4 +22,5 @@ while True:
 # Entrada1= 1,2,3,4
 # elem_a_eliminar = 4
 # salida esperada= 1,2,3
+
 
