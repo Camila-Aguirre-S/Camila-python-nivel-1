@@ -5,33 +5,36 @@ while True:
     contador_especiales = 0
     contador_numeros = 0
 
-    try:
-        for caracter in texto:
-            if caracter.isalpha():
-                contador_letras += 1
-            elif caracter.isdigit():
-                contador_numeros += 1
-            else:
-                contador_especiales += 1
+    for caracter in texto:
+        if caracter.isalpha():
+            contador_letras += 1
+        elif caracter.isdigit():
+            contador_numeros += 1
+        else:
+            contador_especiales += 1
 
-        print("Cantidad de letras :", contador_letras)
-        print("Cantidad de caracteres especiales : ", contador_especiales)
-        print("Cantidad de numeros:",contador_numeros)
-
-    except:
-        print("Ha ocurrido un error. Intente de nuevo.")
+    print("Cantidad de letras :", contador_letras)
+    print("Cantidad de caracteres especiales : ", contador_especiales)
+    print("Cantidad de numeros:",contador_numeros)
 
     opcion = input("¿Desea ingresar otro texto? (si/no)")
 
+    if opcion not in ["si", "no"]:
+        print("Ha ocurrido un error. Intente de nuevo.")
+        opcion = input("¿Desea ingresar otro texto? (si/no)")
+        continue
+
+    # If the user enters "no", exit the loop
     if opcion.lower() == "no":
         break
 
-    #Caso de pruba 1
-  #Entrada1= "abcd1234!@#$"
-    #Salida esperada 1:
-    # Letras = 4
-    # Números = 4
-    # Caracteres especiales = 4
+# Caso de prueba 1
+# Entrada1 = "abcd1234!@#$"
+# Salida esperada 1:
+# Cantidad de letras : 4
+# Cantidad de caracteres especiales : 4
+# Cantidad de numeros: 4
+
 
 
     
