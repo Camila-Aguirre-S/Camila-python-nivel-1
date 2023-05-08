@@ -1,0 +1,30 @@
+while True:
+    texto = input("Ingrese un texto: ")
+
+    contador_letras = 0
+    contador_especiales = 0
+    contador_numeros = 0
+
+    try:
+        for caracter in texto:
+            if caracter.isalpha():
+                contador_letras += 1
+            elif caracter.isdigit():
+                contador_numeros += 1
+            else:
+                contador_especiales += 1
+
+        print("Cantidad de letras :", contador_letras)
+        print("Cantidad de caracteres especiales : ", contador_especiales)
+        print("Cantidad de numeros:",contador_numeros)
+
+    except:
+        print("Ha ocurrido un error. Intente de nuevo.")
+
+    opcion = input("¿Desea ingresar otro texto? (si/no)")
+
+    if opcion.lower() == "no":
+        break
+
+    
+

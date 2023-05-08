@@ -1,0 +1,26 @@
+from collections import defaultdict
+
+while True:
+    texto = input("Ingrese un texto: ")
+    contador_letras = 0 
+    chars = defaultdict(int) # reconocer caracteres
+    try:
+        for caracter in texto:
+            if caracter.isalpha():
+                contador_letras += 1  # contador letras
+
+        for caracter in texto:     
+            if caracter.isalpha():
+                chars[caracter] += 1
+
+
+        for letra, cantidad in chars.items():
+            print(f"{letra}: {cantidad}")
+    
+    except:
+        print("Ha ocurrido un error. Intente de nuevo.")
+    
+    opcion = input("¿Desea ingresar otro texto? (si/no)")
+
+    if opcion.lower() == "no":
+        break

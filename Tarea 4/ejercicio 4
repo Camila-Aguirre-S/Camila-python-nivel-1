@@ -1,0 +1,13 @@
+while True: 
+    lista = input("Ingrese una lista de elementos separados por comas: ").split(",")
+    try:
+        print("Lista:", lista)
+        tupla = tuple(lista)
+        print("Tupla:", tupla)
+    except:
+       print("Ha ocurrido un error. Intente de nuevo.")
+
+    opcion = input("¿Desea ingresar otra lista? (si/no)")
+
+    if opcion.lower() == "no":
+        break

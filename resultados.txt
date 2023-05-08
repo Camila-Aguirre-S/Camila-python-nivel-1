@@ -5,3 +5,7 @@ Operación: factorial, Resultado: 362880
 Operación: & C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe "c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/TAREA #3/app calculadora", Resultado: None
 Operación: , Resultado: None
 Operación: , Resultado: None
+Operación: & C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe "c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/TAREA #3/app calculadora", Resultado: None
+Operación: factorial, Resultado: 119622220865480194561963161495657715064383733760000000000
+Operación: 2+43+43+321, Resultado: 409
+Operación: 3*5*1, Resultado: 15
