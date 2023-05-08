@@ -15,6 +15,7 @@ while True:
 
 
         for letra, cantidad in chars.items():
+            print ("Cantidad por letra:")
             print(f"{letra}: {cantidad}")
     
     except:
