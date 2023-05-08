@@ -24,3 +24,11 @@ while True:
 
     if opcion.lower() == "no":
         break
+
+# Caso de prueba 1
+entrada1 = "araña"
+salida_esperada1 = {"r": 1, "a": 3, "ñ": 1}
+
+# Caso de prueba 2
+entrada2 = "mississippi"
+salida_esperada2 = {"m": 1, "i":4, "s":4, "p":2}

@@ -13,3 +13,9 @@ while True:
 
     if opcion.lower() == "no":
         break
+
+#Caso de Prueba 1
+# Entrada1= 1,2,3,4
+# elem_a_eliminar = 4
+# salida esperada= 1,2,3
+

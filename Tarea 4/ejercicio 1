@@ -26,5 +26,13 @@ while True:
     if opcion.lower() == "no":
         break
 
+    #Caso de pruba 1
+  #Entrada1= "abcd1234!@#$"
+    #Salida esperada 1:
+    # Letras = 4
+    # Números = 4
+    # Caracteres especiales = 4
+
+
     
 
