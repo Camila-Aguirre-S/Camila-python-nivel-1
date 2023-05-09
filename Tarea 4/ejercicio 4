@@ -1,17 +1,18 @@
 while True: 
     lista = input("Ingrese una lista de elementos separados por comas: ").split(",") #reconocer lista
-    try:
-        print("Lista:", lista)
-        tupla = tuple(lista)
-        print("Tupla:", tupla)
-    except:
-       print("Ha ocurrido un error. Intente de nuevo.")
+    print("Lista:", lista)
+    tupla = tuple(lista)
+    print("Tupla:", tupla)
 
-    opcion = input("¿Desea ingresar otra lista? (si/no)")  # loop
+    opcion = input("¿Desea ingresar otra lista? (si/no)")
 
+    while opcion not in ["si", "no"]:
+        print("Ha ocurrido un error. Intente de nuevo.")
+        opcion = input("¿Desea ingresar otra lista? (si/no)")
+    
+    # Si el usuario ingresa "no", salir del loop
     if opcion.lower() == "no":
         break
-
 # Casos de prueba para ejercicio 4
 # Entrada: "1,2,3,4,5,6" 
 # Salida esperada: 
