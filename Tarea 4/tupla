@@ -1,3 +1,4 @@
 lista = input("Ingrese una lista de elementos separados por comas: ").split(",") #reconocer lista
 x = thistuple.count(lista)
 print(x)
+#no revisar
