@@ -4,27 +4,34 @@ while True:
     texto = input("Ingrese un texto: ")
     contador_letras = 0 
     chars = defaultdict(int) # reconocer caracteres
-    try:
-        for caracter in texto:
-            if caracter.isalpha():
-                contador_letras += 1  # contador letras
+        
+    for caracter in texto:
+        if caracter.isalpha():
+            contador_letras += 1  # contador letras
 
-        for caracter in texto:     
-            if caracter.isalpha():
-                chars[caracter] += 1
+    for caracter in texto:     
+        if caracter.isalpha():
+            chars[caracter] += 1
 
-
-        for letra, cantidad in chars.items():
-            print ("Cantidad por letra:")
-            print(f"{letra}: {cantidad}")
+    for letra, cantidad in chars.items():     # Incrementar el contador de caracteres para la letra actual
     
-    except:
-        print("Ha ocurrido un error. Intente de nuevo.")
+        print(f"{letra}: {cantidad}")
     
-    opcion = input("¿Desea ingresar otro texto? (si/no)")
+    while True:
+        opcion = input("¿Desea ingresar otro texto? (si/no)")
 
+        if opcion.lower() in ["si", "no"]:
+            break
+        else:
+            print("Ha ocurrido un error. Intente de nuevo.")
+    
+    # Si el usuario ingresa "no", salir del loop
     if opcion.lower() == "no":
         break
+
+
+
+
 
 # Caso de prueba 1
 entrada1 = "araña"
