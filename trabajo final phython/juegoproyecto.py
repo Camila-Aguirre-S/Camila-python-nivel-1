@@ -1,82 +1,8 @@
-import random
+from jugador import Jugador
+from dealer import Dealer
+from baraja import Baraja
+from mano import Manos
 
-
-class Carta:
-    def __init__(self, palo, valor):
-        self.palo = palo
-        self.valor = valor
-        self.puntuacion = self._calcular_puntuacion()
-
-    def __str__(self):
-        return f"{self.valor} de {self.palo}"
-
-    def _calcular_puntuacion(self):
-        if self.valor in ["Jota", "Reina", "Rey"]:
-            return 10
-        elif self.valor == "As":
-            return 11
-        else:
-            return int(self.valor)
-
-
-class Baraja:
-    def __init__(self):
-        self.cartas = []
-        self._crear_baraja()
-
-    def _crear_baraja(self):
-        palos = ["Espadas", "Corazones", "Diamantes", "Tréboles"]
-        valores = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jota", "Reina", "Rey", "As"]
-        self.cartas = [Carta(palo, valor) for palo in palos for valor in valores]
-        random.shuffle(self.cartas)
-
-    def repartir_carta(self):
-        return self.cartas.pop()
-
-
-class Mano:
-    def __init__(self):
-        self.cartas = []
-
-    def agregar_carta(self, carta):
-        self.cartas.append(carta)
-
-    def obtener_valor(self):
-        valor = sum(carta.puntuacion for carta in self.cartas)
-        num_ases = sum(carta.valor == "As" for carta in self.cartas)
-        while valor > 21 and num_ases > 0:
-            valor -= 10
-            num_ases -= 1
-        return valor
-
-
-class Jugador:
-    def __init__(self, nombre):
-        self.nombre = nombre
-        self.mano = Mano()
-        self.jugando = True
-        self.ganador = False
-
-    def agregar_carta_a_mano(self, carta):
-        self.mano.agregar_carta(carta)
-
-    def obtener_valor_mano(self):
-        return self.mano.obtener_valor()
-
-    def establecer_ganador(self):
-        self.ganador = True
-
-
-class Dealer(Jugador):
-    def __init__(self):
-        super().__init__("Dealer")
-        self.mostrar_todas_las_cartas = False
-
-    def jugar(self):
-        while self.obtener_valor_mano() < 17:
-            self.agregar_carta_a_mano(baraja.repartir_carta())
-
-        self.mostrar_todas_las_cartas = True
 
 
 class JuegoBlackjack:
@@ -106,7 +32,7 @@ class JuegoBlackjack:
             for jugador in self.jugadores:
                 self.jugar_turno_jugador(jugador)
 
-            self.dealer.jugar()
+            self.dealer.jugar(self.baraja)
 
             self.determinar_ganadores()
 
@@ -148,10 +74,10 @@ class JuegoBlackjack:
                 if jugador.obtener_valor_mano() > 21:
                     print(f"{jugador.nombre} se pasó de 21. ¡Perdiste!")
                     jugador.jugando = False
-            elif accion == "A":
+            elif accion == "P":
                 jugador.jugando = False
             else:
-                print("Acción inválida. Por favor, elige P o A.")
+                print("Acción inválida. Por favor, elige P o P.")
 
     def determinar_ganadores(self):
         valor_mano_dealer = self.dealer.obtener_valor_mano()
@@ -183,4 +109,3 @@ class JuegoBlackjack:
 
 juego = JuegoBlackjack()
 juego.iniciar()
-

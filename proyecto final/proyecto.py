@@ -4,7 +4,9 @@ import random
 import usuario
 import juego
 import desarrollo
+import valores
 
+from calcularPUNTAJE import calcular_puntaje
 lista_cartas = [u'2♠', u'3♠', u'4♠', u'5♠', u'6♠', u'7♠', u'8♠', u'9♠', u'10♠', u'J♠', u'Q♠', u'K♠', u'A♠',
                 u'2♥', u'3♥', u'4♥', u'5♥', u'6♥', u'7♥', u'8♥', u'9♥', u'10♥', u'J♥', u'Q♥', u'K♥', u'A♥',
                 u'2♦', u'3♦', u'4♦', u'5♦', u'6♦', u'7♦', u'8♦', u'9♦', u'10♦', u'J♦', u'Q♦', u'K♦', u'A♦',
@@ -59,14 +61,17 @@ while True:
         seleccion_juego = input("Seleccione una opción (a, b, c): ")
 
         if seleccion_juego in opciones_juego:
-            if seleccion_juego == 'a':
-                opciones_juego[seleccion_juego]()
-            elif seleccion_juego == 'b':
-                opciones_juego[seleccion_juego]()
-            elif seleccion_juego == 'c':
-                opciones_juego[seleccion_juego](cartas_jugador)
-            else:
-                print("Opción inválida. Por favor, seleccione una opción válida.")
-            continue
+           if seleccion_juego == 'a':
+             opciones_juego[seleccion_juego]()
+             
+           elif seleccion_juego == 'b':
+             opciones_juego[seleccion_juego]()
+             #puntaje = calcular_puntaje (cartas_jugador)  # Calcular el puntaje del jugador
+             #print("El puntaje del jugador es:", puntaje)
+           elif seleccion_juego == 'c':
+             opciones_juego[seleccion_juego](cartas_jugador)
+           else:
+             print("Opción inválida. Por favor, seleccione una opción válida.")
+             continue
        
 
