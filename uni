@@ -1,0 +1,212 @@
+import random
+
+class Carta:
+    def __init__(self, valor, palo):
+        self.valor = valor
+        self.palo = palo
+
+    def __str__(self):
+        return f"{self.valor} {self.palo}"
+
+class Baraja:
+    def __init__(self):
+        self.cartas = []
+
+    def generar_baraja(self):
+        palos = ["♠", "♥", "♦", "♣"]
+        valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+
+        for palo in palos:
+            for valor in valores:
+                carta = Carta(valor, palo)
+                self.cartas.append(carta)
+
+    def barajar(self):
+        random.shuffle(self.cartas)
+
+    def repartir_carta(self):
+        if len(self.cartas) > 0:
+            return self.cartas.pop()
+        else:
+            return None
+
+class Jugador:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.mano = []
+        self.puntuacion = 0
+        self.manos_especiales = []
+
+    def recibir_carta(self, carta):
+        self.mano.append(carta)
+
+    def calcular_puntuacion(self):
+        self.puntuacion = 0
+        num_ases = 0
+
+        for carta in self.mano:
+            if carta.valor == "A":
+                self.puntuacion += 11
+                num_ases += 1
+            elif carta.valor in ["K", "Q", "J"]:
+                self.puntuacion += 10
+            else:
+                self.puntuacion += int(carta.valor)
+
+        while self.puntuacion > 21 and num_ases > 0:
+            self.puntuacion -= 10
+            num_ases -= 1
+
+    def mostrar_mano(self):
+        mano_str = ""
+        for carta in self.mano:
+            mano_str += str(carta) + ", "
+        return mano_str[:-2]
+
+    def limpiar_mano(self):
+        self.mano = []
+        self.puntuacion = 0
+        self.manos_especiales = []
+
+    def tiene_as(self):
+        for carta in self.mano:
+            if carta.valor == "A":
+                return True
+        return False
+
+class Juego:
+    def __init__(self):
+        self.jugador = None
+        self.casa = Jugador("Casa")
+        self.baraja = None
+
+    def menu_principal(self):
+        while True:
+            print("\n----- Menú Principal -----")
+            print("1. Seleccionar usuario")
+            print("2. Iniciar nuevo juego")
+            print("3. Mostrar estadísticas")
+            print("4. Salir")
+
+            opcion = input("Selecciona una opción: ")
+
+            if opcion == "1":
+                self.seleccionar_usuario()
+            elif opcion == "2":
+                self.iniciar_nuevo_juego()
+            elif opcion == "3":
+                self.mostrar_estadisticas()
+            elif opcion == "4":
+                break
+            else:
+                print("Opción inválida. Inténtalo de nuevo.")
+
+    def seleccionar_usuario(self):
+        nombre = input("Ingresa tu nombre de usuario: ")
+        self.jugador = Jugador(nombre)
+        print(f"Bienvenido, {self.jugador.nombre}.")
+
+    def iniciar_nuevo_juego(self):
+        if self.jugador is None:
+            print("Debes seleccionar un usuario antes de iniciar el juego.")
+            return
+
+        self.baraja = Baraja()
+        self.baraja.generar_baraja()
+        self.baraja.barajar()
+
+        self.jugador.limpiar_mano()
+        self.casa.limpiar_mano()
+
+        self.repartir_cartas_iniciales()
+
+        self.menu_juego()
+
+    def repartir_cartas_iniciales(self):
+        for _ in range(2):
+            carta_jugador = self.baraja.repartir_carta()
+            carta_casa = self.baraja.repartir_carta()
+
+            self.jugador.recibir_carta(carta_jugador)
+            self.casa.recibir_carta(carta_casa)
+
+        self.jugador.calcular_puntuacion()
+        self.casa.calcular_puntuacion()
+
+    def menu_juego(self):
+        while True:
+            print("\n----- Juego del 21 -----")
+            print("Mano del jugador:")
+            print(self.jugador.mostrar_mano())
+            print("Puntuación del jugador:", self.jugador.puntuacion)
+            print()
+            print("Mano de la casa:")
+            print("🂠", self.casa.mano[0])
+            print()
+
+            if self.jugador.puntuacion == 21 and len(self.jugador.mano) == 2:
+                print("¡Blackjack! ¡El jugador ha ganado!")
+                break
+
+            if self.jugador.puntuacion > 21:
+                print("¡El jugador ha perdido!")
+                break
+
+            print("----- Opciones de Juego -----")
+            print("1. Plantarse")
+            print("2. Pedir")
+
+            opcion = input("Selecciona una opción: ")
+
+            if opcion == "1":
+                self.jugar_casa()
+                self.mostrar_resultado()
+                break
+            elif opcion == "2":
+                carta = self.baraja.repartir_carta()
+                self.jugador.recibir_carta(carta)
+                self.jugador.calcular_puntuacion()
+            else:
+                print("Opción inválida. Inténtalo de nuevo.")
+
+    def jugar_casa(self):
+        while self.casa.puntuacion < 17:
+            carta = self.baraja.repartir_carta()
+            self.casa.recibir_carta(carta)
+            self.casa.calcular_puntuacion()
+
+    def mostrar_resultado(self):
+        print("\n----- Resultado del Juego -----")
+        print("Mano del jugador:")
+        print(self.jugador.mostrar_mano())
+        print("Puntuación del jugador:", self.jugador.puntuacion)
+        print()
+        print("Mano de la casa:")
+        print(self.casa.mostrar_mano())
+        print("Puntuación de la casa:", self.casa.puntuacion)
+        print()
+
+        if self.jugador.puntuacion > 21:
+            print("¡El jugador ha perdido!")
+        elif self.casa.puntuacion > 21:
+            print("¡El jugador ha ganado!")
+        elif self.jugador.puntuacion > self.casa.puntuacion:
+            print("¡El jugador ha ganado!")
+        elif self.jugador.puntuacion < self.casa.puntuacion:
+            print("¡El jugador ha perdido!")
+        else:
+            print("¡Empate!")
+
+    def mostrar_estadisticas(self):
+        print("\n----- Estadísticas -----")
+        # Aquí puedes implementar la lógica para mostrar las estadísticas almacenadas en los archivos de texto
+
+   # def guardar_estadisticas(self):
+        # Aquí puedes implementar la lógica para guardar las estadísticas del juego en un archivo de texto
+#
+    #def cargar_estadisticas(self):
+        # Aquí puedes implementar la lógica para cargar las estadísticas del juego desde un archivo de texto
+
+juego = Juego()
+juego.menu_principal()
+

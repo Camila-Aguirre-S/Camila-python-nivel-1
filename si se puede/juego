@@ -1,0 +1,139 @@
+import random
+
+# Clase para representar una carta
+class Carta:
+    def __init__(self, simbolo):
+        self.simbolo = simbolo
+
+# Clase para representar la baraja de cartas
+class Baraja:
+    def __init__(self):
+        self.cartas = []
+        self.reiniciar()
+
+    def reiniciar(self):
+        # Crear una baraja estándar de 52 cartas
+        self.cartas = [Carta(str(i)) for i in range(2, 11)] + [Carta('J'), Carta('Q'), Carta('K'), Carta('A')]
+        random.shuffle(self.cartas)
+
+    def sacar_carta(self):
+        return self.cartas.pop()
+
+# Clase para representar un jugador
+class Jugador:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.mano = []
+        self.puntuacion = 0
+
+    def sacar_cartas_iniciales(self, baraja):
+        for _ in range(2):
+            carta = baraja.sacar_carta()
+            self.mano.append(carta)
+            self.puntuacion += self.obtener_valor_carta(carta)
+
+    def sacar_carta(self, baraja):
+        carta = baraja.sacar_carta()
+        self.mano.append(carta)
+        self.puntuacion += self.obtener_valor_carta(carta)
+
+    def obtener_valor_carta(self, carta):
+        simbolo = carta.simbolo
+        if simbolo.isnumeric():
+            return int(simbolo)
+        elif simbolo in ['J', 'Q', 'K']:
+            return 10
+        elif simbolo == 'A':
+            return 11
+
+# Clase para representar el juego de Blackjack
+class JuegoBlackjack:
+    def __init__(self):
+        self.baraja = Baraja()
+        self.jugador = None
+
+    def seleccionar_o_crear_usuario(self):
+        nombre_usuario = input("Introduce el nombre del usuario: ")
+        self.jugador = Jugador(nombre_usuario)
+
+    def iniciar_nuevo_juego(self):
+        if self.jugador is None:
+            print("Primero debes seleccionar o crear un usuario.")
+            return
+
+        print(f"\n¡Bienvenido al Blackjack, {self.jugador.nombre}!")
+        self.jugador.sacar_cartas_iniciales(self.baraja)
+        self.mostrar_mano_jugador()
+
+        while True:
+            opcion = input("¿Qué deseas hacer? (P: Pedir carta, S: Plantarse): ").upper()
+
+            if opcion == 'P':
+                self.jugador.sacar_carta(self.baraja)
+                self.mostrar_mano_jugador()
+
+                if self.jugador.puntuacion > 21:
+                    print("Te has pasado de 21. ¡Has perdido!")
+                    break
+
+            elif opcion == 'S':
+                print("Te has plantado con tu mano.")
+                self.jugar_turno_crupier()
+                break
+
+    def mostrar_mano_jugador(self):
+        print("Tu mano:")
+        for carta in self.jugador.mano:
+            print(carta.simbolo, end=' ')
+        print("\nPuntuación:", self.jugador.puntuacion)
+
+    def jugar_turno_crupier(self):
+        puntuacion_crupier = 0
+        mano_crupier = []
+
+        while puntuacion_crupier < 17:
+            carta = self.baraja.sacar_carta()
+            mano_crupier.append(carta)
+            puntuacion_crupier += self.jugador.obtener_valor_carta(carta)
+
+        print("Mano del crupier:")
+        for carta in mano_crupier:
+            print(carta.simbolo, end=' ')
+        print("\nPuntuación del crupier:", puntuacion_crupier)
+
+        if puntuacion_crupier > 21:
+            print("El crupier se ha pasado de 21. ¡Has ganado!")
+        elif puntuacion_crupier > self.jugador.puntuacion:
+            print("¡Has perdido!")
+        elif puntuacion_crupier < self.jugador.puntuacion:
+            print("¡Has ganado!")
+        else:
+            print("Empate.")
+
+# Clase principal para manejar el juego
+class ManejadorJuego:
+    def __init__(self):
+        self.juego = JuegoBlackjack()
+
+    def menu_principal(self):
+        while True:
+            print("\n--- Menú ---")
+            print("1. Seleccionar/Crear usuario")
+            print("2. Nuevo juego")
+            print("3. Salir")
+
+            opcion = input("Selecciona una opción: ")
+
+            if opcion == '1':
+                self.juego.seleccionar_o_crear_usuario()
+            elif opcion == '2':
+                self.juego.iniciar_nuevo_juego()
+            elif opcion == '3':
+                break
+            else:
+                print("Opción inválida. Por favor, selecciona una opción válida.")
+
+
+# Ejecutar el juego
+manejador_juego = ManejadorJuego()
+manejador_juego.menu_principal()

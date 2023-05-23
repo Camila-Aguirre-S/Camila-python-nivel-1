@@ -1,0 +1,45 @@
+#Documentación Externa
+
+#El proceso de diseño e implementación del proyecto se basa en la creación de un juego de Blackjack. El juego se desarrolla en Python y se divide en varios módulos para facilitar la estructura y reutilización del código.
+
+#- El módulo `estadisticas` se encarga de guardar y cargar las estadísticas del juego. Para ello, cuenta con las funciones `guardar_estadisticas(resultado)` y `cargar_estadisticas()`.
+
+#- El módulo `jugador` define la clase `Jugador` que representa a un jugador en el juego de Blackjack. La clase `Jugador` tiene atributos como `nombre` y `cartas`, así como métodos para recibir cartas, mostrar las cartas en la mano y calcular el valor total de las cartas.
+
+#- El módulo `baraja` define la clase `Baraja` que representa una baraja de cartas en el juego de Blackjack. La clase `Baraja` tiene atributos como `palos`, `valores` y `cartas`, y métodos para mezclar la baraja, repartir cartas y obtener la cantidad de cartas restantes.
+
+##- El módulo principal `juego` contiene la lógica principal del juego de Blackjack. La clase `Juego` tiene atributos como `baraja`, `jugador` y `casa`, y métodos para jugar, seleccionar usuario, iniciar juego, mostrar estado del juego, guardar estadísticas, mostrar estadísticas, pedir carta, plantarse y jugar la ronda de la casa.
+
+#El juego se ejecuta a través de la clase `Juego` y sigue el flujo de selección de usuario, inicio del juego, turnos de los jugadores, cálculo de valores y comparación de resultados. El jugador puede pedir cartas o plantarse, mientras que la casa toma cartas hasta llegar a un valor de 17 o más. Las estadísticas del juego se guardan y pueden ser cargadas en futuras sesiones.
+
+
+Se usó una logica con esta reglas: 
+
+Hacer un programa que incluya
+un modulo para barajar las 52 cartas concodigo unicode de la casa 
+y del jugador (2 cartas)
+la opción de:
+a). Al inicio del juego se debe seleccionar un usuario o crear uno nuevo.
+que se guarde el nombre y el resultado de la partida en un archivo 
+ b. Nuevo juego: inicia un juego nuevo con el usuario seleccionado. y que suceceda lo siguiente :
+El crupier reparte dos cartas boca arriba a cada jugador y se reparte a sí mismo una carta boca arriba y otra boca abajo(NO SE PUEDE MOSTRAR).
+darle al jugador las opciones:
+"Plantarse" o :se avanza en el juego y se imprime el resultado que lleva , se pasa al paso 3.
+"Pedir" o  una carta adicional para intentar mejorar su mano:
+elegir al hazar una  carta
+imprimir las 3 cartas que tendria en el momento
+sumarlo a la puntuación 
+
+
+Después el crupier revela su carta boca abajo(imprimir). Si la suma de su mano es 16 o menos, debe pedir una carta adicional (imprimir). Si la suma es de 17 o más, el crupier debe plantarse (elegir al hazar una carta mas e imprimirla).
+Si el jugador tiene una mano con un valor total superior a 21, se considera "pasado" o "quemado", lo que significa que pierde su apuesta. Si el crupier se pasa de 21, todos los jugadores que aún estén en el juego ganan.
+
+Si la suma de la mano del crupier es mayor que la del jugador sin pasarse de 21, el jugador pierde su apuesta. Si la suma de la mano del jugador es mayor que la del crupier sin pasarse de 21, el jugador gana.
+si ninguno pierde se vuelve de nuevo al punto 2. darle al jugador la opcion de plantarse o pedir
+
+La casa, al ser manejada por la computadora, debe seguir una lógica predeterminada, por ejemplo que siempre pida carta si su mano suma menos de 19. 6. Debe implementar algunas de las manos especiales del 21: tres sietes, cinco menores y blackjack. Si un jugador tiene alguna de estas manos, gana automáticamente. 7. El juego debe almacenar los datos del usuario y las estadísticas en archivos de texto que serán creados por la aplicación. Usted puede decidir cuántos archivos de texto crear para lograr los resultados especificados en estos requerimientos.
+El código debe estar organizado en módulos y en clases. Se deben utilizar los conocimientos adquiridos sobre programación orientada a objetos (OOP). Usted debe decidir cuáles clases necesita crear para representar los elementos del juego. Referencia sobre diseño orientado a objetos: https://en.wikipedia.org/wiki/Object-oriented_design
+
+
+ c. Estadísticas: muestra las estadísticas del usuario seleccionado. Estas estadísticas deben ser por lo menos los resultados de los últimos 5 juegos del usuario.
+ d. Salir

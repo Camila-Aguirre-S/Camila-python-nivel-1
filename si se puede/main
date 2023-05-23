@@ -1,0 +1,175 @@
+import random
+
+class Usuario:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.juegos = []
+
+    def agregar_juego(self, resultado):
+        self.juegos.append(resultado)
+
+    def mostrar_estadisticas(self):
+        print(f"\nEstadísticas de {self.nombre}:")
+        if len(self.juegos) == 0:
+            print("No hay juegos registrados.")
+        else:
+            for i, resultado in enumerate(self.juegos[-5:], start=1):
+                print(f"Juego {i}: {resultado}")
+        print()
+
+class Blackjack:
+    def __init__(self):
+        self.usuarios = []
+
+    def menu_principal(self):
+        while True:
+            print("\n--- Menú Principal ---")
+            print("a. Seleccionar usuario existente o crear uno nuevo")
+            print("b. Nuevo juego")
+            print("c. Estadísticas")
+            print("d. Salir")
+
+            opcion = input("Seleccione una opción: ").lower()
+
+            if opcion == 'a':
+                self.seleccionar_usuario()
+            elif opcion == 'b':
+                self.nuevo_juego()
+            elif opcion == 'c':
+                self.mostrar_estadisticas()
+            elif opcion == 'd':
+                self.guardar_estadisticas()
+                break
+            else:
+                print("Opción inválida. Intente nuevamente.")
+
+    def seleccionar_usuario(self):
+        print("\n--- Selección de usuario ---")
+        if len(self.usuarios) == 0:
+            print("No hay usuarios registrados.")
+            self.nuevo_usuario()
+        else:
+            print("Usuarios existentes:")
+            for i, usuario in enumerate(self.usuarios, start=1):
+                print(f"{i}. {usuario.nombre}")
+            opcion = input("Seleccione un usuario existente o ingrese 0 para crear uno nuevo: ")
+
+            if opcion == '0':
+                self.nuevo_usuario()
+            elif opcion.isdigit():
+                opcion = int(opcion)
+                if opcion > 0 and opcion <= len(self.usuarios):
+                    usuario = self.usuarios[opcion - 1]
+                    print(f"Usuario seleccionado: {usuario.nombre}")
+                    return usuario
+                else:
+                    print("Opción inválida.")
+            else:
+                print("Opción inválida.")
+
+    def nuevo_usuario(self):
+        nombre = input("Ingrese el nombre de usuario: ")
+        usuario = Usuario(nombre)
+        self.usuarios.append(usuario)
+        print(f"Usuario {nombre} creado correctamente.")
+
+    def nuevo_juego(self):
+        usuario = self.seleccionar_usuario()
+        if usuario:
+            juego = Juego(usuario)
+            juego.jugar_partida()
+
+    def mostrar_estadisticas(self):
+        usuario = self.seleccionar_usuario()
+        if usuario:
+            usuario.mostrar_estadisticas()
+
+    def guardar_estadisticas(self):
+        for usuario in self.usuarios:
+            with open(f"{usuario.nombre}.txt", "w") as archivo:
+                archivo.write(f"Estadísticas de {usuario.nombre}:\n")
+                if len(usuario.juegos) == 0:
+                    archivo.write("No hay juegos registrados.\n")
+                else:
+                    for i, resultado in enumerate(usuario.juegos, start=1):
+                        archivo.write(f"Juego {i}: {resultado}\n")
+
+class Juego:
+    def __init__(self, usuario):
+        self.usuario = usuario
+
+    def crear_baraja(self):
+        palos = ['♠', '♡', '♢', '♣']
+        valores = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        baraja = [(valor, palo) for valor in valores for palo in palos]
+        random.shuffle(baraja)
+        return baraja
+
+    def mostrar_mano(self, mano):
+        for carta in mano:
+            print(f'{carta[0]}{carta[1]}', end=' ')
+        print()
+
+    def calcular_valor_mano(self, mano):
+        valores = {'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10}
+        valor = sum(valores[carta[0]] for carta in mano)
+        return valor
+
+    def jugar_partida(self):
+        print(f"\n¡Bienvenido al Blackjack, {self.usuario.nombre}!")
+        baraja = self.crear_baraja()
+        mano_jugador = [baraja.pop(), baraja.pop()]
+        mano_crupier = [baraja.pop(), baraja.pop()]
+
+        print("Tu mano:")
+        self.mostrar_mano(mano_jugador)
+        print("Mano del crupier:")
+        print(f'{mano_crupier[0][0]}{mano_crupier[0][1]} ?')
+
+        while True:
+            opcion = input("¿Qué deseas hacer? (P: Pedir carta, S: Plantarse): ").upper()
+
+            if opcion == 'P':
+                mano_jugador.append(baraja.pop())
+                print("Tu mano:")
+                self.mostrar_mano(mano_jugador)
+
+                if self.calcular_valor_mano(mano_jugador) > 21:
+                    print("Te has pasado de 21. ¡Has perdido!")
+                    self.usuario.agregar_juego("Perdido")
+                    break
+
+            elif opcion == 'S':
+                print("Plantaste tu mano.")
+                print("Tu mano final:")
+                self.mostrar_mano(mano_jugador)
+                print("Mano del crupier:")
+                self.mostrar_mano(mano_crupier)
+                valor_jugador = self.calcular_valor_mano(mano_jugador)
+                valor_crupier = self.calcular_valor_mano(mano_crupier)
+
+                while valor_crupier < 17:
+                    mano_crupier.append(baraja.pop())
+                    valor_crupier = self.calcular_valor_mano(mano_crupier)
+
+                print("Mano del crupier final:")
+                self.mostrar_mano(mano_crupier)
+
+                if valor_crupier > 21:
+                    print("El crupier se ha pasado de 21. ¡Has ganado!")
+                    self.usuario.agregar_juego("Ganado")
+                elif valor_jugador > valor_crupier:
+                    print("¡Has ganado!")
+                    self.usuario.agregar_juego("Ganado")
+                elif valor_jugador == valor_crupier:
+                    print("Empate.")
+                    self.usuario.agregar_juego("Empate")
+                else:
+                    print("¡Has perdido!")
+                    self.usuario.agregar_juego("Perdido")
+
+                break
+
+if __name__ == "__main__":
+    juego = Blackjack()
+    juego.menu_principal()
