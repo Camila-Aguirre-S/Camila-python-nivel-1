@@ -11,11 +11,17 @@
 import functools
 
 
+# La función map se utiliza para aplicar una función a todos los elementos de una secuencia.
+# Tomando dos argumentos: la función a aplicar y la secuencia en la que se aplicará.
+
+
 def multiplicar_fun():
     operacion = input("Ingrese una operación de multiplicación separada por '*': ")
     numeros = list(map(int, operacion.split('*')))
-    resultado = functools.reduce(lambda x, y: x * y, numeros)
+    resultado = functools.reduce(lambda x, y: x * y, numeros)  # Calcular el resultado de la multiplicación utilizando la función reduce
     return resultado
 print(multiplicar_fun())
+
+
 
 
