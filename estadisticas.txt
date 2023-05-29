@@ -1,1 +1,4 @@
-cami: Ganado - Ganado
+xa: ["Ganado", "Perdido", "Perdido", "Perdido", "Ganado", "Perdido", "Perdido", "Perdido"]
+ca: ["-", "-", "pe", "perdida", "ganada"]
+a: ["ca"]
+& C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe "c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/proyecto final camila/juego.py": ["& C:/Users/User/AppData/Local/Microsoft/WindowsApps/python3.10.exe \"c:/Users/User/Camila-python-nivel-1/Camila-python-nivel-1/proyecto final camila/juego.py\""]

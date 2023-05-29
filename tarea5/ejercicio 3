@@ -1,0 +1,78 @@
+   #funcion original
+#from collections import defaultdict
+
+#while True:
+    #texto = input("Ingrese un texto: ")
+   ## contador_letras = 0 
+  #  chars = defaultdict(int) # reconocer caracteres
+        
+ ##   for caracter in texto:
+  #      if caracter.isalpha():
+  #          contador_letras += 1  # contador letras
+
+  #  for caracter in texto:     
+  #      if caracter.isalpha():
+  #          chars[caracter] += 1
+
+   # for letra, cantidad in chars.items():     # Incrementar el contador de caracteres para la letra actual
+    
+   #     print(f"{letra}: {cantidad}")
+    
+   # while True:
+   #     opcion = input("¿Desea ingresar otro texto? (si/no)")
+
+   #     if opcion.lower() in ["si", "no"]:
+   #         break
+   #     else:
+   #         print("Ha ocurrido un error. Intente de nuevo.")
+    
+    # Si el usuario ingresa "no", salir del loop
+    #if opcion.lower() == "no":
+      #  break
+
+
+
+
+
+# Caso de prueba 1
+#entrada1 = "araña"
+#salida_esperada1 = {"r": 1, "a": 3, "ñ": 1}
+
+from collections import defaultdict
+
+def contar_letras_funcional():
+    while True:
+        texto = input("Ingrese un texto (ejemplo: araña): ")
+        
+        contador_letras = sum(list(map(lambda caracter: 1 if caracter.isalpha() else 0, texto)))  
+        # Se utiliza la función sum junto con map y lambda para contar la cantidad de letras en el texto. 
+        # La función lambda comprueba si cada caracter es alfabético, imprimiendo el resultado después 
+        # La función sum suma todos los valores obtenidos de la misma letra
+        
+
+
+
+
+        chars = defaultdict(int)  # Utilizar defaultdict para contar caracteres
+
+        for caracter in texto:
+            if caracter.isalpha():
+                chars[caracter] += 1
+
+        for letra, cantidad in chars.items():
+            print(f"{letra}: {cantidad}")
+
+        while True:
+            opcion = input("¿Desea ingresar otro texto? (si/no)")
+
+            if opcion.lower() in ["si", "no"]:
+                break
+            else:
+                print("Ha ocurrido un error. Intente de nuevo.")
+
+        # Si el usuario ingresa "no", salir del loop
+        if opcion.lower() == "no":
+            break
+
+# Prueba de la función
+contar_letras_funcional()

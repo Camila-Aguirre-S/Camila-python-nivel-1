@@ -22,3 +22,4 @@ class Baraja:
     def __len__(self):
         # Obtener la cantidad de cartas restantes en la baraja
         return len(self.cartas)
+

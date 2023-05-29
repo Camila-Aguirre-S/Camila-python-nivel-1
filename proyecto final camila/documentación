@@ -1,16 +1,78 @@
-#Documentación Externa
+# Documentación Externa - Juego de Blackjack
 
-#El proceso de diseño e implementación del proyecto se basa en la creación de un juego de Blackjack. El juego se desarrolla en Python y se divide en varios módulos para facilitar la estructura y reutilización del código.
+Este proyecto consiste en la creación de un juego de Blackjack en Python. El juego se divide en varios módulos y sigue las reglas clásicas del Blackjack.
 
-#- El módulo `estadisticas` se encarga de guardar y cargar las estadísticas del juego. Para ello, cuenta con las funciones `guardar_estadisticas(resultado)` y `cargar_estadisticas()`.
+## Módulo `juego`
 
-#- El módulo `jugador` define la clase `Jugador` que representa a un jugador en el juego de Blackjack. La clase `Jugador` tiene atributos como `nombre` y `cartas`, así como métodos para recibir cartas, mostrar las cartas en la mano y calcular el valor total de las cartas.
+El módulo `juego` es el módulo principal del juego de Blackjack. Contiene la clase `Juego`, que representa el juego en sí. La clase tiene los siguientes atributos y métodos:
 
-#- El módulo `baraja` define la clase `Baraja` que representa una baraja de cartas en el juego de Blackjack. La clase `Baraja` tiene atributos como `palos`, `valores` y `cartas`, y métodos para mezclar la baraja, repartir cartas y obtener la cantidad de cartas restantes.
+- Atributos:
+  - `baraja`: Instancia de la clase `Baraja` que representa la baraja de cartas.
+  - `jugador`: Instancia de la clase `Jugador` que representa al jugador.
+  - `casa`: Instancia de la clase `Jugador` que representa a la casa.
+  - `estadisticas`: Lista que guarda las estadísticas de las partidas jugadas.
 
-##- El módulo principal `juego` contiene la lógica principal del juego de Blackjack. La clase `Juego` tiene atributos como `baraja`, `jugador` y `casa`, y métodos para jugar, seleccionar usuario, iniciar juego, mostrar estado del juego, guardar estadísticas, mostrar estadísticas, pedir carta, plantarse y jugar la ronda de la casa.
+- Métodos:
+  - `jugar()`: Función principal para iniciar el juego.
+  - `seleccionar_usuario()`: Función para seleccionar el nombe del jugador.
+  - `iniciar_juego()`: Función para iniciar un nuevo juego.
+  - `pedir_carta()`: Función para que el jugador pida una carta adicional.
+  - `plantarse()`: Función para que el jugador se plante y jugar la ronda de la casa.
+  - `jugar_ronda_casa()`: Función para jugar la ronda de la casa.
+  - `mostrar_estado_juego()`: Función para mostrar el estado actual del juego.
+  - `guardar_estadisticas(resultado)`: Función para guardar las estadísticas de la partida.
+  - `mostrar_estadisticas()`: Función para mostrar las estadísticas de las últimas partidas.
+  - `jugar_otra_partida()`: Función para preguntar si se desea jugar otra partida.
 
-#El juego se ejecuta a través de la clase `Juego` y sigue el flujo de selección de usuario, inicio del juego, turnos de los jugadores, cálculo de valores y comparación de resultados. El jugador puede pedir cartas o plantarse, mientras que la casa toma cartas hasta llegar a un valor de 17 o más. Las estadísticas del juego se guardan y pueden ser cargadas en futuras sesiones.
+## Módulo `jugador`
+
+El módulo `jugador` define la clase `Jugador` que representa a un jugador en el juego de Blackjack. La clase tiene los siguientes atributos y métodos:
+
+- Atributos:
+  - `nombre`: Nombre del jugador.
+  - `cartas`: Lista de cartas en la mano del jugador.
+
+- Métodos:
+  - `recibir_carta(carta)`: Agrega una carta a la mano del jugador.
+  - `mostrar_cartas()`: Muestra las cartas en la mano del jugador.
+  - `valor_total()`: Calcula el valor total de las cartas en la mano del jugador.
+
+## Módulo `baraja`
+
+El módulo `baraja` define la clase `Baraja` que representa una baraja de cartas en el juego de Blackjack. La clase tiene los siguientes atributos y métodos:
+
+- Atributos:
+  - `palos`: Lista de palos de las cartas (corazones, diamantes, tréboles, picas).
+  - `valores`: Lista de valores de las cartas (A, 2, 3, ..., 10, J, Q, K).
+  - `cartas`: Lista de todas las cartas en la baraja.
+
+- Métodos:
+  - `mezclar()`: Mezcla las cartas de la baraja.
+  - `repartir_carta()`: Reparte una carta de la baraja.
+
+## Módulo `estadisticas`
+
+El módulo `estadisticas` contiene funciones para guardar y cargar las estadísticas del juego. Las funciones son:
+
+- `guardar_estadisticas(resultado)`: Guarda el resultado de una partida en un archivo.
+- `cargar_estadisticas()`: Carga las estadísticas guardadas desde un archivo.
+
+## Código  Ejecución
+
+```python
+from jugador import Jugador
+from estadisticas import guardar_estadisticas, cargar_estadisticas
+from baraja import Baraja
+import random
+
+class Juego:
+    ...
+    # Código del juego omitido para mayor claridad
+    ...
+
+# Código de ejecución del juego
+juego = Juego()
+juego.jugar()
 
 
 Se usó una logica con esta reglas: 

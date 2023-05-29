@@ -1,0 +1,21 @@
+#"""""" funcion original
+
+#def multiplicar():
+  #  operacion = input("Ingrese una operación de multiplicación separada por '*' (por ejemplo, '3*4*5'): ")
+   # numeros = operacion.split('*')
+   # resultado = 1
+   # for numero in numeros:
+  #      resultado *= int(numero)
+ #   return resultado
+
+import functools
+
+
+def multiplicar_fun():
+    operacion = input("Ingrese una operación de multiplicación separada por '*': ")
+    numeros = list(map(int, operacion.split('*')))
+    resultado = functools.reduce(lambda x, y: x * y, numeros)
+    return resultado
+print(multiplicar_fun())
+
+
