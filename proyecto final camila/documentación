@@ -105,3 +105,4 @@ El código debe estar organizado en módulos y en clases. Se deben utilizar los 
 
  c. Estadísticas: muestra las estadísticas del usuario seleccionado. Estas estadísticas deben ser por lo menos los resultados de los últimos 5 juegos del usuario.
  d. Salir
+
